@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/numberCompareFragment">
 
+    <fragment
+        android:id="@+id/numberCompareFragment"
+        android:name="com.jrapmund.cpsc411.client.NumberCompareFragment"
+        android:label="fragment_number_compare"
+        tools:layout="@layout/fragment_number_compare" >
+        <action
+            android:id="@+id/action_numberCompareFragment_to_numberCompareFeedbackFragment"
+            app:destination="@id/numberCompareFeedbackFragment" >
+            <argument
+                android:name="arg1"
+                app:argType="string"
+                app:nullable="true"
+                android:defaultValue="@null"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/numberCompareFeedbackFragment"
+        android:name="com.jrapmund.cpsc411.client.NumberCompareFeedbackFragment"
+        android:label="fragment_number_compare_feedback"
+        tools:layout="@layout/fragment_number_compare_feedback" />
 </navigation>
