@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.TableLayout
+import androidx.navigation.findNavController
 import com.github.kittinunf.fuel.Fuel
+import com.jrapmund.cpsc411.client.views.PairEntry
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.decodeFromJsonElement
-import java.util.*
-
 
 
 class DSLViewerFragment : Fragment() {
@@ -35,7 +35,18 @@ class DSLViewerFragment : Fragment() {
 
             if(data != null) {
                 println(String(data))
-                view.findViewById<TextView>(R.id.jsonOutput).text = String(data)
+
+                val stores = Json.decodeFromString<MutableList<Pair<Int, String>>>(String(data))
+                val storesTable = view.findViewById<TableLayout>(R.id.storesTable)
+
+                for(store in stores){
+                    val entry = PairEntry(view.context, store.second, store.first.toString())
+                    entry.setOnClickListener { v ->
+                        println("Store: ${entry.second} was selected.")
+                        v.findNavController().navigate(DSLViewerFragmentDirections.actionDSLViewerFragmentToDepartmentsFragment(entry.second))
+                    }
+                    storesTable.addView(entry)
+                }
             } else {
                 Log.d("Web Service Log", "$error")
             }

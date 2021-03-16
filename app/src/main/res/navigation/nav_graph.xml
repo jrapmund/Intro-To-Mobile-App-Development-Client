@@ -41,5 +41,20 @@
         android:id="@+id/DSLViewerFragment"
         android:name="com.jrapmund.cpsc411.client.DSLViewerFragment"
         android:label="fragment_d_s_l_viewer"
-        tools:layout="@layout/fragment_d_s_l_viewer" />
+        tools:layout="@layout/fragment_d_s_l_viewer" >
+        <action
+            android:id="@+id/action_DSLViewerFragment_to_departmentsFragment"
+            app:destination="@id/departmentsFragment" >
+            <argument
+                android:name="storeID"
+                app:argType="string"
+                app:nullable="true"
+                android:defaultValue="@null"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/departmentsFragment"
+        android:name="com.jrapmund.cpsc411.client.DepartmentsFragment"
+        android:label="fragment_departments"
+        tools:layout="@layout/fragment_departments" />
 </navigation>
