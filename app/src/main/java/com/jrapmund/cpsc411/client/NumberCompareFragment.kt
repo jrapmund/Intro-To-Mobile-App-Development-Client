@@ -23,9 +23,9 @@ class NumberCompareFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val address = view.resources.getString(R.string.address)
         println("View Created")
-        Fuel.get("http://192.168.0.176:4444/newnumber").response {
+        Fuel.get("$address/newnumber").response {
                 request, response, result ->
             val (data, error) = result
 

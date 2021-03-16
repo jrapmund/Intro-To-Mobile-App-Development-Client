@@ -43,8 +43,10 @@ class NumberCompareFeedbackFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val address = view.resources.getString(R.string.address)
+
         val inputJsonString = Json.encodeToString(param1?:"0")
-        Fuel.post("http://192.168.0.176:4444/numbercompare").body(inputJsonString).response {
+        Fuel.post("$address/numbercompare").body(inputJsonString).response {
                 request, response, result ->
             val (data, error) = result
 
